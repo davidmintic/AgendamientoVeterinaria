@@ -1,0 +1,111 @@
+﻿@page
+@model Veterinaria.App.Presentacion.LoginModel
+@{
+}
+
+
+<img src=".././images/bg.png" alt="" class="cls-bg-login">
+
+<div class="cls-container-login">
+
+  <img src=".././images/huella.svg" alt="" class="cls-bg-huella">
+  <div class="container cls-sub-container-login">
+
+    <div class="row d-flex justify-content-center mb-4">
+      <h4>@Model.title</h4>
+    </div>
+
+    @* <form id="form-login"> *@
+
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="id-correo">Correo:</label>
+          <input type="email" class="form-control" id="id-correo" aria-describedby="emailHelp" name="correo"
+            placeholder="Escribe aquí tu correo">
+          @* <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          *@
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="id-contrasenia">Contraseña:</label>
+          <input type="password" class="form-control" id="id-contrasenia" name="contrasenia"
+            placeholder="Escribe aquí tu contraseña">
+        </div>
+      </div>
+    </div>
+
+    @* </form> *@
+
+    <div class="row">
+      <div class="col d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary" onclick="login()">Entrar</button>
+      </div>
+    </div>
+
+    <div class="row d-flex mt-2">
+      <div class="col text-center">
+        <a href="#" class="link-primary">¿Eres nuevo? Regístrate</a>
+      </div>
+    </div>
+
+    <div class="row d-flex mt-2">
+      <div class="col text-center">
+        <a href="#" class="link-primary">¿Olvidaste tu contraseña?</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  function login() {
+
+  @*
+    var xhttp = new XMLHttpRequest();
+
+    console.log( JSON.stringify($('#form-login').serializeArray()));
+
+    xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+    alert(xhttp.responseText);
+    }
+    };
+
+    var formElement = document.getElementById("form-login");
+    var request = new XMLHttpRequest();
+    xhttp.open("POST", "https://localhost:5004/Login", true);
+    request.send("prueba"); *@
+
+
+
+      $.ajax({
+        type: "POST", // la variable type guarda el tipo de la peticion GET,POST,..
+        url: "https://localhost:5004/Login", //url guarda la ruta hacia donde se hace la peticion
+        contentType: "application/json", // send as JSON
+        data: JSON.stringify(
+          {
+            nombre: "pepe",
+            edad: 10,
+            telefono: "10",
+            edad: 20,
+            direccion: "10",
+            correo: "da@gmail.com",
+            contrasenia: "sdjs62",
+            fechaRegistro: "2020-10-05",
+            especializacion: "prueba",
+            tarjetaProfesional: "10"
+          }
+        ),
+        success: function (datos) { //success es una funcion que se utiliza si el servidor retorna informacion
+            alert(datos);
+        },
+        dataType: 'text' // El tipo de datos esperados del servidor. Valor predeterminado: Intelligent Guess (xml, json, script, text, html).
+      })
+  }
+
+</script>

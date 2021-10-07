@@ -1,0 +1,157 @@
+﻿@page
+@model Veterinaria.App.Presentacion.Pages.AdminVeterinarioModel
+@{
+}
+
+<h1 style="margin: 25px 0px; color: gray; font-size: 21px;">Veterinarios</h1>
+
+@* <button class="btn btn-primary" onclick="actualizarLista()">Actualizar lista</button> *@
+
+
+<div class="accordion" id="accordionExample">
+
+
+    <div class="card">
+        <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                    data-target="#collapseListaVeterinarios" aria-expanded="true"
+                    aria-controls="collapseListaVeterinarios">
+                    Lista veterinarios
+                </button>
+            </h2>
+        </div>
+
+        <div id="collapseListaVeterinarios" class="collapse show" aria-labelledby="headingOne"
+            data-parent="#accordionExample">
+            <div class="card-body">
+
+
+
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Telefono</th>
+                            <th scope="col">Correo</th>
+                            <th>
+                                Acciones
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <form method="POST">
+                            @foreach (var v in Model.veterinarios)
+                            {
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>@v.nombre</td>
+                                    <td>@v.correo</td>
+                                    <td>@v.telefono</td>
+                                    <td>
+                                        <button class="btn btn-primary" asp-page-handler="Del" asp-route-id="@v"> Editar</button>                                        
+                                        <button class="btn btn-primary" asp-page-handler="Del" asp-route-id="@v.Id">
+                                            Eliminar</button>
+                                    </td>
+                                </tr>
+                            }
+                        </form>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                    data-target="#collapseCrudVeterinario" aria-expanded="true" aria-controls="collapseCrudVeterinario">
+                    Crud Veterinario
+                </button>
+            </h2>
+        </div>
+
+        <div id="collapseCrudVeterinario" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+
+                <form method="post">
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                <div class="form-group">
+                                    <label for="id-admin-veterinario-nombre">Nombre</label>
+                                    <input type="text" class="form-control" id="id-admin-veterinario-nombre"
+                                        aria-describedby="emailHelp" name="nombre">
+                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+                                        anyone
+                                        else.</small>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="form-group">
+                                    <label for="id-admin-veterinario-telefono">Teléfono</label>
+                                    <input type="tel" class="form-control" id="id-admin-veterinario-telefono"
+                                        aria-describedby="emailHelp" name="telefono">
+                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+                                        anyone
+                                        else.</small>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="form-group">
+                                    <label for="id-admin-veterinario-edad">Edad</label>
+                                    <input type="number" class="form-control" id="id-admin-veterinario-edad"
+                                        aria-describedby="emailHelp" name="edad">
+                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+                                        anyone
+                                        else.</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm">
+                                <div class="form-group">
+                                    <label for="id-admin-veterinario-direccion">Dirección</label>
+                                    <input type="text" class="form-control" id="id-admin-veterinario-direccion"
+                                        aria-describedby="emailHelp" name="direccion">
+                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+                                        anyone
+                                        else.</small>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="form-group">
+                                    <label for="id-admin-veterinario-correo">Correo</label>
+                                    <input type="email" class="form-control" id="id-admin-veterinario-correo"
+                                        aria-describedby="emailHelp" name="correo">
+                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+                                        anyone
+                                        else.</small>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="form-group">
+                                    <label for="id-admin-veterinario-contrasenia">Contraseña</label>
+                                    <input type="password" class="form-control" id="id-admin-veterinario-contrasenia"
+                                        aria-describedby="emailHelp" name="contrasenia">
+                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+                                        anyone
+                                        else.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" asp-page-handler="Add"> Agregar</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
