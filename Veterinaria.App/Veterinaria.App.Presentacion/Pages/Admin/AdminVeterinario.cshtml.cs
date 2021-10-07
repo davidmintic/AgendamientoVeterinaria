@@ -41,6 +41,9 @@ namespace Veterinaria.App.Presentacion.Pages
             this.RefreshData();
         }
 
+
+        
+
         // asp-page-handler=""
         public  void OnPostDel(int id)
         {
@@ -54,6 +57,29 @@ namespace Veterinaria.App.Presentacion.Pages
                  Console.WriteLine("NO ENTRÓ con el id ");
             }
         }
+
+        
+        // asp-page-handler=""
+        public  IActionResult  OnPostEdit(int id)
+        {
+            if(id != null) {
+                // Console.WriteLine("entro con el id "+ id);
+                // this.RefreshData();
+                // repositorioVeterinario.Eliminar(id);
+                // this.RefreshData();
+
+        //          string url = "/.auth/login/aad?post_login_redirect_url=" 
+        //   + Request.Query["redirect_url"];
+
+                return Redirect("/index?id="+id);
+            } else {
+                this.RefreshData();
+                 Console.WriteLine("NO ENTRÓ con el id ");
+
+                 return Redirect("/index");
+            }
+        }
+
 
 
         public void RefreshData() {
