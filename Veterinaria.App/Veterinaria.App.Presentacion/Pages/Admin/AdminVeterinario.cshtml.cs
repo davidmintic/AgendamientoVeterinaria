@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Veterinaria.App.Dominio;
 using Veterinaria.App.Persistencia;
+using System.Security.Cryptography;
 
 
 namespace Veterinaria.App.Presentacion.Pages
@@ -13,83 +14,69 @@ namespace Veterinaria.App.Presentacion.Pages
     public class AdminVeterinarioModel : PageModel
     {
 
-        private  ICrudRepositorio repositorioVeterinario = new RepositorioVeterinario(new Persistencia.AppContext());
+        private ICrudRepositorio repositorioVeterinario = new RepositorioVeterinario(new Persistencia.AppContext());
         // public List <EntidadVeterinario>  veterinarios = new List<EntidadVeterinario>();
-        public IEnumerable <EntidadVeterinario>  veterinarios;
+        public IEnumerable<EntidadVeterinario> veterinarios;
+        public EntidadVeterinario veterinarioActual;
+        public String modoPage = "adicion";
 
-        public void OnGet(int id)
-        {
-            // var vs = repositorioVeterinario.ObtenerListadoObjetos();
-            if(id != null) {
-                Console.WriteLine("entro con el id "+ id);
-                this.RefreshData();
-            } else {
-                this.RefreshData();
-                 Console.WriteLine("NO ENTRÓ con el id ");
+        public void OnGet(int idVeterinario)
+        {        
+
+            if (idVeterinario > 0)
+            {
+                this.modoPage = "edicion";
+                this.veterinarioActual = (EntidadVeterinario)repositorioVeterinario.ObtenerObjeto(idVeterinario);
             }
-    
+            else
+            {
+                this.modoPage = "adicion";
+            }
+
+            this.RefreshData();
+
         }
 
-
-        // asp-page-handler=""
-        public  void OnPostAdd(EntidadVeterinario veterinario)
+        public void OnPostAdd(EntidadVeterinario veterinario)
         {
-            var emailAddress = Request.Form["nombre"];
-
-            Console.WriteLine(emailAddress);
+            veterinario.Contrasenia = GetMD5Hash(veterinario.Contrasenia);
             repositorioVeterinario.Agregar(veterinario);
             this.RefreshData();
         }
 
-
-        
-
-        // asp-page-handler=""
-        public  void OnPostDel(int id)
+        public void OnPostDel(int idVeterinario)
         {
-            if(id != null) {
-                // Console.WriteLine("entro con el id "+ id);
-                // this.RefreshData();
-                repositorioVeterinario.Eliminar(id);
-                this.RefreshData();
-            } else {
-                this.RefreshData();
-                 Console.WriteLine("NO ENTRÓ con el id ");
-            }
+
+            repositorioVeterinario.Eliminar(idVeterinario);
+            this.RefreshData();
         }
 
-        
-        // asp-page-handler=""
-        public  IActionResult  OnPostEdit(int id)
+        public void OnPostEdit(EntidadVeterinario vetetinario)
         {
-            if(id != null) {
-                // Console.WriteLine("entro con el id "+ id);
-                // this.RefreshData();
-                // repositorioVeterinario.Eliminar(id);
-                // this.RefreshData();
 
-        //          string url = "/.auth/login/aad?post_login_redirect_url=" 
-        //   + Request.Query["redirect_url"];
-
-                return Redirect("/index?id="+id);
-            } else {
-                this.RefreshData();
-                 Console.WriteLine("NO ENTRÓ con el id ");
-
-                 return Redirect("/index");
-            }
+            repositorioVeterinario.EditarCampo(vetetinario);
+            this.RefreshData();
         }
 
 
+        public void RefreshData()
+        {
+            var listaEnumerable = repositorioVeterinario.ObtenerListadoObjetos();
+            this.veterinarios = (IEnumerable<EntidadVeterinario>)repositorioVeterinario.ObtenerListadoObjetos();
+        }
 
-        public void RefreshData() {
-
-             var listaEnumerable = repositorioVeterinario.ObtenerListadoObjetos();
-             this.veterinarios =  (IEnumerable<EntidadVeterinario>)repositorioVeterinario.ObtenerListadoObjetos();
-
-            // foreach(Object v in listaEnumerable) {
-            //     this.veterinarios.Add((EntidadVeterinario)v);
-            // }
+        public static String GetMD5Hash(String input)
+        {
+            MD5CryptoServiceProvider x = new MD5CryptoServiceProvider();
+            byte[] bs = System.Text.Encoding.UTF8.GetBytes(input);
+            bs = x.ComputeHash(bs);
+            System.Text.StringBuilder s = new System.Text.StringBuilder();
+            foreach (byte b in bs)
+            {
+                s.Append(b.ToString("x2").ToLower());
+            }
+            String hash = s.ToString();
+            return hash;
         }
     }
 }

@@ -19,6 +19,29 @@ namespace Veterinaria.App.Persistencia.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
+            modelBuilder.Entity("Veterinaria.App.Dominio.EntidadMascota", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("CuidadorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Raza")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CuidadorId");
+
+                    b.ToTable("Mascotas");
+                });
+
             modelBuilder.Entity("Veterinaria.App.Dominio.EntidadPersona", b =>
                 {
                     b.Property<int>("Id")
@@ -26,29 +49,29 @@ namespace Veterinaria.App.Persistencia.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("Contrasenia")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Correo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Direccion")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Discriminator")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("contrasenia")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("correo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("direccion")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("edad")
+                    b.Property<int>("Edad")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("fechaRegistro")
+                    b.Property<DateTime>("FechaRegistro")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("nombre")
+                    b.Property<string>("Nombre")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("telefono")
+                    b.Property<string>("Telefono")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -58,17 +81,40 @@ namespace Veterinaria.App.Persistencia.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("EntidadPersona");
                 });
 
+            modelBuilder.Entity("Veterinaria.App.Dominio.EntidadCuidador", b =>
+                {
+                    b.HasBaseType("Veterinaria.App.Dominio.EntidadPersona");
+
+                    b.HasDiscriminator().HasValue("EntidadCuidador");
+                });
+
             modelBuilder.Entity("Veterinaria.App.Dominio.EntidadVeterinario", b =>
                 {
                     b.HasBaseType("Veterinaria.App.Dominio.EntidadPersona");
 
-                    b.Property<string>("especializacion")
+                    b.Property<string>("Especializacion")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("tarjetaProfesional")
+                    b.Property<string>("TarjetaProfesional")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("EntidadVeterinario");
+                });
+
+            modelBuilder.Entity("Veterinaria.App.Dominio.EntidadMascota", b =>
+                {
+                    b.HasOne("Veterinaria.App.Dominio.EntidadCuidador", "Cuidador")
+                        .WithMany("Mascotas")
+                        .HasForeignKey("CuidadorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cuidador");
+                });
+
+            modelBuilder.Entity("Veterinaria.App.Dominio.EntidadCuidador", b =>
+                {
+                    b.Navigation("Mascotas");
                 });
 #pragma warning restore 612, 618
         }

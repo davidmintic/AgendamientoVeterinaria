@@ -5,6 +5,10 @@
     <ProjectReference Include="..\Veterinaria.App.Persistencia\Veterinaria.App.Persistencia.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>

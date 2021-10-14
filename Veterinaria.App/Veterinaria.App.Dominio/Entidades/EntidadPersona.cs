@@ -1,17 +1,19 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Veterinaria.App.Dominio
 {
     public class EntidadPersona
     {
        public int Id {get; set;}
-       public String nombre {get; set;}
-       public String telefono {get; set;}
-       public int edad {get; set;}
-       public String direccion {get; set;}
-       public String correo {get; set;}
-       public String contrasenia {get; set;}  
-       public DateTime fechaRegistro {get; set;} 
+
+       public String Nombre {get; set;}
+       public String Telefono {get; set;}
+       public int Edad {get; set;}
+       public String Direccion {get; set;}
+       public String Correo {get; set;}
+       public String Contrasenia {get; set;}  
+       public DateTime FechaRegistro {get; set;} 
         
     }
 }

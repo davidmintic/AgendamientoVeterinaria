@@ -16,6 +16,7 @@ namespace Veterinaria.App.Persistencia
 
           Object ICrudRepositorio.Agregar(Object objeto){
              EntidadVeterinario veterinario = (EntidadVeterinario) objeto;
+             veterinario.FechaRegistro = DateTime.Now;
              var objetoAgregado = this.appContext.Veterinarios.Add(veterinario); 
              this.appContext.SaveChanges();
              return objetoAgregado.Entity;   
@@ -29,13 +30,13 @@ namespace Veterinaria.App.Persistencia
             var veterinarioEncontrado = this.appContext.Veterinarios.FirstOrDefault(p => p.Id == veterinario.Id);
 	            if (veterinarioEncontrado != null)
 	            {
-	                veterinarioEncontrado.nombre = veterinario.nombre;
-	                veterinarioEncontrado.telefono = veterinario.telefono;
-	                veterinarioEncontrado.edad = veterinario.edad;
-	                veterinarioEncontrado.direccion = veterinario.direccion;
-	                veterinarioEncontrado.correo = veterinario.correo;
-	                veterinarioEncontrado.contrasenia = veterinario.contrasenia;
-	                veterinarioEncontrado.fechaRegistro = DateTime.Now;;
+	                veterinarioEncontrado.Nombre = veterinario.Nombre;
+	                veterinarioEncontrado.Telefono = veterinario.Telefono;
+	                veterinarioEncontrado.Edad = veterinario.Edad;
+	                veterinarioEncontrado.Direccion = veterinario.Direccion;
+	                veterinarioEncontrado.Correo = veterinario.Correo;
+	                veterinarioEncontrado.Contrasenia = veterinario.Contrasenia;
+	                veterinarioEncontrado.FechaRegistro = DateTime.Now;;
 	                this.appContext.SaveChanges();
 
 	            }
@@ -50,12 +51,15 @@ namespace Veterinaria.App.Persistencia
             var veterinarioEncontrado = this.appContext.Veterinarios.FirstOrDefault(p => p.Id == veterinario.Id);
 	            if (veterinarioEncontrado != null)
 	            {
-	                veterinarioEncontrado.nombre = veterinario.nombre != null ? veterinario.nombre : veterinarioEncontrado.nombre;
-	                veterinarioEncontrado.edad = veterinario.edad != null ? veterinario.edad : veterinarioEncontrado.edad;
-	                veterinarioEncontrado.direccion = veterinario.direccion != null ? veterinario.direccion : veterinarioEncontrado.direccion;
-	                veterinarioEncontrado.correo = veterinario.correo != null ? veterinario.correo : veterinarioEncontrado.correo;
-	                veterinarioEncontrado.contrasenia = veterinario.contrasenia != null ? veterinario.contrasenia : veterinarioEncontrado.contrasenia;
-	                veterinarioEncontrado.fechaRegistro = veterinario.fechaRegistro != null ? veterinario.fechaRegistro : veterinarioEncontrado.fechaRegistro;
+	                veterinarioEncontrado.Nombre = veterinario.Nombre != null ? veterinario.Nombre : veterinarioEncontrado.Nombre;
+	                veterinarioEncontrado.Edad = veterinario.Edad != null ? veterinario.Edad : veterinarioEncontrado.Edad;
+	                veterinarioEncontrado.Telefono = veterinario.Telefono != null ? veterinario.Telefono : veterinarioEncontrado.Telefono;
+	                veterinarioEncontrado.Direccion = veterinario.Direccion != null ? veterinario.Direccion : veterinarioEncontrado.Direccion;
+	                veterinarioEncontrado.Correo = veterinario.Correo != null ? veterinario.Correo : veterinarioEncontrado.Correo;
+	                veterinarioEncontrado.Contrasenia = veterinario.Contrasenia != null ? veterinario.Contrasenia : veterinarioEncontrado.Contrasenia;
+	                veterinarioEncontrado.Especializacion = veterinario.Especializacion != null ? veterinario.Especializacion : veterinarioEncontrado.Especializacion;
+	                veterinarioEncontrado.TarjetaProfesional = veterinario.TarjetaProfesional != null ? veterinario.TarjetaProfesional : veterinarioEncontrado.TarjetaProfesional;
+	                veterinarioEncontrado.FechaRegistro = veterinario.FechaRegistro != null ? veterinario.FechaRegistro : veterinarioEncontrado.FechaRegistro;
 	                this.appContext.SaveChanges();
 
 	            }

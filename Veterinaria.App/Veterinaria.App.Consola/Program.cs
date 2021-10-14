@@ -21,15 +21,15 @@ namespace Veterinaria.App.Consola
             var veterinario = new EntidadVeterinario 
             {
                 // id = "0",
-                nombre = "Juan",
-                telefono =  "10",
-                edad =  20,
-                direccion = "10",
-                correo = "da@gmail.com",
-                contrasenia = "sdjs62",
-                fechaRegistro = new DateTime(1985, 03, 12),
-                especializacion = "prueba",
-                tarjetaProfesional = "10"
+                Nombre = "Juan",
+                Telefono =  "10",
+                Edad =  20,
+                Direccion = "10",
+                Correo = "da@gmail.com",
+                Contrasenia = "sdjs62",
+                FechaRegistro = new DateTime(1985, 03, 12),
+                Especializacion = "prueba",
+                TarjetaProfesional = "10"
             };
 
             repositorioVeterinario.Agregar(veterinario);
@@ -42,16 +42,16 @@ namespace Veterinaria.App.Consola
             var veterinario = new EntidadVeterinario 
             {
                 Id = idVeterinario,               
-                correo = "david@gmail.com",
-                contrasenia = "1111",
-                 // nombre = "Juan",
-                // telefono =  "10",
-                // edad =  20,
-                // direccion = "10",
+                Correo = "david@gmail.com",
+                Contrasenia = "1111",
+                 // Nombre = "Juan",
+                // Telefono =  "10",
+                // Edad =  20,
+                // Direccion = "10",
                 
-                // fechaRegistro = new DateTime(1985, 03, 12),
-                // especializacion = "prueba",
-                // tarjetaProfesional = "10"
+                // FechaRegistro = new DateTime(1985, 03, 12),
+                // Especializacion = "prueba",
+                // TarjetaProfesional = "10"
             };
 
             Object v = repositorioVeterinario.EditarCampo(veterinario);

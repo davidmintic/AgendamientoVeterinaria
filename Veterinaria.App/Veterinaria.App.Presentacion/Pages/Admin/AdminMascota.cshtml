@@ -1,0 +1,121 @@
+﻿@page
+@model Veterinaria.App.Presentacion.Pages.AdminMascotaModel
+@{
+}
+@if (@Model.cuidadorActual != null)
+{
+    <h1 style="margin: 25px 0px; color: gray; font-size: 21px;">Mascotas de @Model.cuidadorActual.Nombre</h1>
+
+}
+
+<div class="accordion" id="accordionVeterinarios">
+
+    <div class="card">
+        <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+
+                @if (@Model.cuidadorActual != null)
+                {
+                    <a type="button" class="btn btn-primary" asp-page="/Admin/AdminCuidador"
+                    asp-page-route-idCuidador="@Model.cuidadorActual.Id" style="position: absolute; right: 25px;">
+                        Regresar
+                    </a>
+                }
+
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                    data-target="#collapseListaVeterinarios" aria-expanded="true"
+                    aria-controls="collapseListaVeterinarios">
+                    Lista de mascotas
+                </button>
+            </h2>
+        </div>
+
+        <div id="collapseListaVeterinarios" class="@(Model.modoPage == "adicion" ? "collapse show" : "collapse")"
+            aria-labelledby="headingOne" data-parent="#accordionVeterinarios">
+            <div class="card-body">
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            @* <th scope="col">Telefono</th> *@
+                            <th scope="col">Raza</th>
+                            <th>
+                                Acciones
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @if (@Model.cuidadorActual != null)
+                        {
+
+                            foreach (var v in Model.cuidadorActual.Mascotas)
+                            {
+                                <tr>
+                                    <td>@v.Id</td>
+                                    <td>@v.Nombre</td>
+                                    <td>@v.Raza</td>
+                                    @* <td>@v.Correo</td> *@
+                                    <td>
+
+                                        <div class="container" style="width: 260px;">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <a class="btn btn-primary bg-success" asp-page="/Admin/AdminCuidador"
+                                                asp-route-idVeterinario="@v.Id">
+                                                        Editar</a>
+                                                </div>
+                                                <div class="col-4">
+                                                    <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-primary bg-danger" data-toggle="modal"
+                                                data-target="#exampleModal">
+                                                        Eliminar
+                                                    </button>
+
+                                                    <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Debes
+                                                                        confirmar</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    ¿Estás seguro de eliminar el cuidador?
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                       
+                                                                    <form method="POST">
+                                                                        <button class="btn btn-primary bg-danger"
+                                                                    asp-page-handler="Del"
+                                                                    asp-route-idVeterinario="@v.Id">
+                                                                            Sí, ¡estoy seguro!
+                                                                        </button>
+                                                                    </form>
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Cancelar</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

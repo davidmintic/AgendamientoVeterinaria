@@ -81,3 +81,11 @@ C:\Users\SIGMA\Desktop\Código Mintic Ciclo 3\AgendamientoVeterinaria\Veterinari
 C:\Users\SIGMA\Desktop\Código Mintic Ciclo 3\AgendamientoVeterinaria\Veterinaria.App\Veterinaria.App.Presentacion\bin\Debug\netcoreapp3.1\Veterinaria.App.Dominio.pdb
 C:\Users\SIGMA\Desktop\Código Mintic Ciclo 3\AgendamientoVeterinaria\Veterinaria.App\Veterinaria.App.Presentacion\bin\Debug\netcoreapp3.1\Veterinaria.App.Persistencia.pdb
 C:\Users\SIGMA\Desktop\Código Mintic Ciclo 3\AgendamientoVeterinaria\Veterinaria.App\Veterinaria.App.Presentacion\obj\Debug\netcoreapp3.1\Razor\Pages\Admin\AdminVeterinario.cshtml.g.cs
+C:\Users\SIGMA\Desktop\Código Mintic Ciclo 3\AgendamientoVeterinaria\Veterinaria.App\Veterinaria.App.Presentacion\obj\Debug\netcoreapp3.1\Razor\Pages\Admin\AdminCuidador.cshtml.g.cs
+C:\Users\SIGMA\Desktop\Código Mintic Ciclo 3\AgendamientoVeterinaria\Veterinaria.App\Veterinaria.App.Presentacion\obj\Debug\netcoreapp3.1\Razor\Pages\Admin\AdminMascota.cshtml.g.cs
+C:\Users\SIGMA\Desktop\Código Mintic Ciclo 3\AgendamientoVeterinaria\Veterinaria.App\Veterinaria.App.Presentacion\obj\Debug\netcoreapp3.1\Razor\Pages\Agendamiento\Agenda.cshtml.g.cs
+C:\Users\SIGMA\Desktop\Código Mintic Ciclo 3\AgendamientoVeterinaria\Veterinaria.App\Veterinaria.App.Presentacion\bin\Debug\netcoreapp3.1\publish\web.config
+C:\Users\SIGMA\Desktop\Código Mintic Ciclo 3\AgendamientoVeterinaria\Veterinaria.App\Veterinaria.App.Presentacion\bin\Debug\netcoreapp3.1\publish\appsettings.Development.json
+C:\Users\SIGMA\Desktop\Código Mintic Ciclo 3\AgendamientoVeterinaria\Veterinaria.App\Veterinaria.App.Presentacion\bin\Debug\netcoreapp3.1\publish\appsettings.json
+C:\Users\SIGMA\Desktop\Código Mintic Ciclo 3\AgendamientoVeterinaria\Veterinaria.App\Veterinaria.App.Presentacion\bin\Debug\netcoreapp3.1\publish\Veterinaria.App.Presentacion.deps.json
+C:\Users\SIGMA\Desktop\Código Mintic Ciclo 3\AgendamientoVeterinaria\Veterinaria.App\Veterinaria.App.Presentacion\bin\Debug\netcoreapp3.1\publish\Veterinaria.App.Presentacion.runtimeconfig.json

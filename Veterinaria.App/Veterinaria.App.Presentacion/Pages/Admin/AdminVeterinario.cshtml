@@ -3,12 +3,12 @@
 @{
 }
 
-<h1 style="margin: 25px 0px; color: gray; font-size: 21px;">Veterinarios</h1>
+<h1 style="margin: 25px 0px; color: gray; font-size: 21px;">Bienvenido al admin de veterinarios</h1>
 
 @* <button class="btn btn-primary" onclick="actualizarLista()">Actualizar lista</button> *@
 
 
-<div class="accordion" id="accordionExample">
+<div class="accordion" id="accordionVeterinarios">
 
 
     <div class="card">
@@ -22,8 +22,8 @@
             </h2>
         </div>
 
-        <div id="collapseListaVeterinarios" class="collapse show" aria-labelledby="headingOne"
-            data-parent="#accordionExample">
+        <div id="collapseListaVeterinarios" class="@(Model.modoPage == "adicion" ? "collapse show" : "collapse")"
+            aria-labelledby="headingOne" data-parent="#accordionVeterinarios">
             <div class="card-body">
 
                 <table class="table table-hover">
@@ -39,22 +39,77 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <form method="POST">
-                            @foreach (var v in Model.veterinarios)
-                            {
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>@v.nombre</td>
-                                    <td>@v.correo</td>
-                                    <td>@v.telefono</td>
-                                    <td>
-                                        <button class="btn btn-primary" asp-page-handler="Edit" asp-route-id="@v.Id"> Editar</button>                                        
-                                        <button class="btn btn-primary" asp-page-handler="Del" asp-route-id="@v.Id">
-                                            Eliminar</button>
-                                    </td>
-                                </tr>
-                            }
-                        </form>
+
+                        @foreach (var v in Model.veterinarios)
+                        {
+                            <tr>
+                                <td>@v.Id</td>
+                                <td>@v.Nombre</td>
+                                <td>@v.Telefono</td>
+                                <td>@v.Correo</td>
+                                <td>
+
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <a class="btn btn-primary bg-success" asp-page="/Admin/AdminVeterinario"
+                                                asp-route-idVeterinario="@v.Id">
+                                                    Editar</a>
+                                            </div>
+                                            <div class="col-4">
+                                                <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-primary bg-danger" data-toggle="modal"
+                                                data-target="#exampleModal">
+                                                    Eliminar
+                                                </button>
+
+                                                <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Debes
+                                                                    confirmar</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                ¿Estás seguro de eliminar el veterinario?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                @* <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close</button>
+                                                                    <button type="button" class="btn btn-primary">Save
+                                                                    changes</button> *@
+
+                                                                <form method="POST">
+                                                                    <button class="btn btn-primary bg-danger"
+                                                                    asp-page-handler="Del"
+                                                                    asp-route-idVeterinario="@v.Id">
+                                                                        Sí, ¡estoy seguro!
+                                                                    </button>
+                                                                </form>
+                                                                <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Cancelar</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-4">
+                                                <a class="btn btn-primary bg-primary" asp-page="/Admin/AdminVeterinario"
+                                                asp-route-idVeterinario="@v.Id">
+                                                    Citas</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
@@ -71,82 +126,106 @@
             </h2>
         </div>
 
-        <div id="collapseCrudVeterinario" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div id="collapseCrudVeterinario" class="@(Model.modoPage == "edicion" ? "collapse show" : "collapse")"
+            aria-labelledby="headingOne" data-parent="#accordionVeterinarios">
             <div class="card-body">
-
-                <form method="post">
-
+                <form method="POST">
                     <div class="container">
-                        <div class="row">
-                            <div class="col-sm">
-                                <div class="form-group">
-                                    <label for="id-admin-veterinario-nombre">Nombre</label>
-                                    <input type="text" class="form-control" id="id-admin-veterinario-nombre"
-                                        aria-describedby="emailHelp" name="nombre">
-                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with
-                                        anyone
-                                        else.</small>
-                                </div>
-                            </div>
-                            <div class="col-sm">
-                                <div class="form-group">
-                                    <label for="id-admin-veterinario-telefono">Teléfono</label>
-                                    <input type="tel" class="form-control" id="id-admin-veterinario-telefono"
-                                        aria-describedby="emailHelp" name="telefono">
-                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with
-                                        anyone
-                                        else.</small>
-                                </div>
-                            </div>
-                            <div class="col-sm">
-                                <div class="form-group">
-                                    <label for="id-admin-veterinario-edad">Edad</label>
-                                    <input type="number" class="form-control" id="id-admin-veterinario-edad"
-                                        aria-describedby="emailHelp" name="edad">
-                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with
-                                        anyone
-                                        else.</small>
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="row">
+
+                            <input asp-for="@Model.veterinarioActual.Id" type="hidden" class="form-control" name="Id">
+
                             <div class="col-sm">
                                 <div class="form-group">
-                                    <label for="id-admin-veterinario-direccion">Dirección</label>
-                                    <input type="text" class="form-control" id="id-admin-veterinario-direccion"
-                                        aria-describedby="emailHelp" name="direccion">
-                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with
-                                        anyone
-                                        else.</small>
+                                    <label>Nombre <b>(*)</b></label>
+                                    <input autocomplete="off" asp-for="@Model.veterinarioActual.Nombre" type="text"
+                                        class="form-control" required placeholder="Digita tu nombre aquí" name="Nombre">
                                 </div>
                             </div>
                             <div class="col-sm">
                                 <div class="form-group">
-                                    <label for="id-admin-veterinario-correo">Correo</label>
-                                    <input type="email" class="form-control" id="id-admin-veterinario-correo"
-                                        aria-describedby="emailHelp" name="correo">
-                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with
-                                        anyone
-                                        else.</small>
+                                    <label for="id-telefono">Teléfono</label>
+                                    <input required asp-for="@Model.veterinarioActual.Telefono" type="tel"
+                                        class="form-control" placeholder="Digita tu teléfono" name="Telefono">
                                 </div>
                             </div>
                             <div class="col-sm">
                                 <div class="form-group">
-                                    <label for="id-admin-veterinario-contrasenia">Contraseña</label>
-                                    <input type="password" class="form-control" id="id-admin-veterinario-contrasenia"
-                                        aria-describedby="emailHelp" name="contrasenia">
-                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with
-                                        anyone
-                                        else.</small>
+                                    <label>Edad</label>
+                                    <input required asp-for="@Model.veterinarioActual.Edad" type="number"
+                                        class="form-control" placeholder="Digita tu edad" name="Edad">
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <button class="btn btn-primary" asp-page-handler="Add"> Agregar</button>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                <div class="form-group">
+                                    <label for="id-direccion">Dirección</label>
+                                    <input required asp-for="@Model.veterinarioActual.Direccion" type="text"
+                                        class="form-control" placeholder="Digita tu dirección" name="Direccion">
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="form-group">
+                                    <label>Correo</label>
+                                    <input required asp-for="@Model.veterinarioActual.Correo" type="email"
+                                        class="form-control" placeholder="Digita tu correo" name="Correo">
+                                </div>
+                            </div>
 
+                            <div class="col-sm">
+                                <div class="form-group">
+                                    <label>Contraseña</label>
+                                    <input  asp-for="@Model.veterinarioActual.Contrasenia" type="password"
+                                        class="form-control" placeholder="Digita tu contraseña" name="Contrasenia">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label>Tarjeta Profesional</label>
+                                    <input required asp-for="@Model.veterinarioActual.TarjetaProfesional" type="text"
+                                        class="form-control" required name="TarjetaProfesional">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label>Especialización</label>
+                                    <input required asp-for="@Model.veterinarioActual.Especializacion" type="text"
+                                        required class="form-control" name="Especializacion">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container" style="margin: 20px 20px 20px 15px;">
+                        <div class="row">
+                            <button type="submit" class="btn btn-primary" style="margin-right: 20px"
+                                asp-page-handler="Add">
+                                Agregar
+                            </button>
+
+                            @if (Model.modoPage == "edicion")
+                            {
+                                <button type="submit" class="btn btn-primary bg-success" style="margin-right: 20px"
+                                asp-page-handler="Edit">
+                                    Editar
+                                </button>
+                            }
+
+                        </div>
+
+                    </div>
                 </form>
+
             </div>
         </div>
     </div>

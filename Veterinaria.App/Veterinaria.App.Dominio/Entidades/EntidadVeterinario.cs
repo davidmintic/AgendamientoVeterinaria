@@ -5,8 +5,8 @@ namespace Veterinaria.App.Dominio
     public class EntidadVeterinario : EntidadPersona
     {
 
-       public String especializacion {get; set;}
-       public String tarjetaProfesional {get; set;}
+       public String Especializacion {get; set;}
+       public String TarjetaProfesional {get; set;}
         
     }
 }

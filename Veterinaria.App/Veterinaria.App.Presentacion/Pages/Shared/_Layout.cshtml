@@ -7,6 +7,7 @@
     <title>@ViewData["Title"] - Agendamiento veterinaria</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/style.css">
 </head>
 
 <body>
@@ -31,7 +32,19 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Login/Login">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Admin/AdminVeterinario">Veterinarios</a>
+                            <a class="nav-link text-dark" asp-area=""
+                                asp-page="/Admin/AdminVeterinario">Veterinarios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Admin/AdminCuidador">Cuidadores</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Agendamiento/Agenda">Agendamiento</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Admin/AdminVeterinario">Citas</a>
                         </li>
                     </ul>
                 </div>
@@ -53,6 +66,8 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/popper.js"></script>
+    <script src="~/js/main.js"></script>
 
     @RenderSection("Scripts", required: false)
 </body>

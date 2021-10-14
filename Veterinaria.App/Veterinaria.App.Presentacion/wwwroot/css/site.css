@@ -87,8 +87,8 @@ body {
 }
 
 .cls-sub-container-login {
-  margin: 0;
-  width: 470px;
+  margin: 0 !important;
+  width: 470px !important;
   background: #ffffff;
   padding: 50px;
   border-radius: 20px;

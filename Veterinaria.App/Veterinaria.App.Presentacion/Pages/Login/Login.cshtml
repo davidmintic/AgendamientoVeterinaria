@@ -15,37 +15,39 @@
       <h4>@Model.title</h4>
     </div>
 
-    @* <form id="form-login"> *@
+    <form id="form-login" method="post">
 
-    <div class="row">
-      <div class="col">
-        <div class="form-group">
-          <label for="id-correo">Correo:</label>
-          <input type="email" class="form-control" id="id-correo" aria-describedby="emailHelp" name="correo"
-            placeholder="Escribe aquí tu correo">
-          @* <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-          *@
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="id-correo">Correo:</label>
+            <input required type="email" class="form-control" id="id-correo" aria-describedby="emailHelp" name="Correo"
+              placeholder="Escribe aquí tu correo" autocomplete="off">
+            @* <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            *@
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col">
-        <div class="form-group">
-          <label for="id-contrasenia">Contraseña:</label>
-          <input type="password" class="form-control" id="id-contrasenia" name="contrasenia"
-            placeholder="Escribe aquí tu contraseña">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="id-contrasenia">Contraseña:</label>
+            <input required type="password" class="form-control" id="id-contrasenia" name="Contrasenia"
+              placeholder="Escribe aquí tu contraseña">
+          </div>
         </div>
       </div>
-    </div>
 
-    @* </form> *@
-
-    <div class="row">
-      <div class="col d-flex justify-content-center">
-        <button type="submit" class="btn btn-primary" onclick="login()">Entrar</button>
+      <div class="row">
+        <div class="col d-flex justify-content-center">
+          <button type="submit" class="btn btn-primary" asp-page-handler="Login">Entrar</button>
+        </div>
       </div>
-    </div>
+
+    </form>
+
+
 
     <div class="row d-flex mt-2">
       <div class="col text-center">
@@ -61,51 +63,79 @@
   </div>
 </div>
 
-<script>
+
+@if (Model.errorLogin)
+{
+  <div aria-live="polite" aria-atomic="true" 
+  style="min-height: 200px; position: absolute; top: 50%; left: 50%; z-index: 99; width: 300px; transform: translateX(-50%);">
+    <div class="toast" style="position: absolute; top: 0; right: 0; opacity: 1 !important;">
+      <div class="toast-header">
+        @* <img src="..." class="rounded mr-2" alt="..."> *@
+        <strong class="mr-auto">Error iniciando sesión</strong>
+        <small>.....</small>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="toast-body">
+        Intenta nuevamente
+      </div>
+    </div>
+  </div>
+}
+
+
+
+
+
+
+
+@* <script>
 
   function login() {
 
-  @*
-    var xhttp = new XMLHttpRequest();
 
-    console.log( JSON.stringify($('#form-login').serializeArray()));
+  var xhttp = new XMLHttpRequest();
 
-    xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-    alert(xhttp.responseText);
-    }
-    };
+  console.log( JSON.stringify($('#form-login').serializeArray()));
 
-    var formElement = document.getElementById("form-login");
-    var request = new XMLHttpRequest();
-    xhttp.open("POST", "https://localhost:5004/Login", true);
-    request.send("prueba"); *@
+  xhttp.onreadystatechange = function () {
+  if (this.readyState == 4 && this.status == 200) {
+  alert(xhttp.responseText);
+  }
+  };
+
+  var formElement = document.getElementById("form-login");
+  var request = new XMLHttpRequest();
+  xhttp.open("POST", "https://localhost:5004/Login", true);
+  request.send("prueba");
 
 
 
-      $.ajax({
-        type: "POST", // la variable type guarda el tipo de la peticion GET,POST,..
-        url: "https://localhost:5004/Login", //url guarda la ruta hacia donde se hace la peticion
-        contentType: "application/json", // send as JSON
-        data: JSON.stringify(
-          {
-            nombre: "pepe",
-            edad: 10,
-            telefono: "10",
-            edad: 20,
-            direccion: "10",
-            correo: "da@gmail.com",
-            contrasenia: "sdjs62",
-            fechaRegistro: "2020-10-05",
-            especializacion: "prueba",
-            tarjetaProfesional: "10"
-          }
-        ),
-        success: function (datos) { //success es una funcion que se utiliza si el servidor retorna informacion
-            alert(datos);
-        },
-        dataType: 'text' // El tipo de datos esperados del servidor. Valor predeterminado: Intelligent Guess (xml, json, script, text, html).
-      })
+  $.ajax({
+  type: "POST", // la variable type guarda el tipo de la peticion GET,POST,..
+  url: "https://localhost:5004/Login", //url guarda la ruta hacia donde se hace la peticion
+  contentType: "application/json", // send as JSON
+  data: JSON.stringify(
+  {
+  nombre: "pepe",
+  edad: 10,
+  telefono: "10",
+  edad: 20,
+  direccion: "10",
+  correo: "da@gmail.com",
+  contrasenia: "sdjs62",
+  fechaRegistro: "2020-10-05",
+  especializacion: "prueba",
+  tarjetaProfesional: "10"
+  }
+  ),
+  success: function (datos) { //success es una funcion que se utiliza si el servidor retorna informacion
+  alert(datos);
+  },
+  dataType: 'text' // El tipo de datos esperados del servidor. Valor predeterminado: Intelligent Guess (xml, json, script,
+  text, html).
+  })
   }
 
-</script>
+  </script> *@

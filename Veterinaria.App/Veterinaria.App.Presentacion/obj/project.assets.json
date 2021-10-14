@@ -1486,6 +1486,9 @@
       "Veterinaria.App.Dominio/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "System.ComponentModel.Annotations": "5.0.0"
+        },
         "compile": {
           "bin/placeholder/Veterinaria.App.Dominio.dll": {}
         },
@@ -5684,6 +5687,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "System.ComponentModel.Annotations >= 5.0.0",
       "Veterinaria.App.Dominio >= 1.0.0",
       "Veterinaria.App.Persistencia >= 1.0.0"
     ]
@@ -5735,6 +5739,12 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "dependencies": {
+          "System.ComponentModel.Annotations": {
+            "target": "Package",
+            "version": "[5.0.0, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",
