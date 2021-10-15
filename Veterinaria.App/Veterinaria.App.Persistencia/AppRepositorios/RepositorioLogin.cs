@@ -15,6 +15,10 @@ namespace Veterinaria.App.Persistencia
             this.appContext = appContext;
         }
 
+        /// <summary>
+        /// Sirve para realizar la validación de que un usario existant
+        /// <Return> 
+        // Retorna true si el usuario existe o false si el usuario no existe
         public Boolean ValidarUsuario(string correo, string contrasenia)
         {
             // var objetoEncontrado = this.appContext.Personas.FirstOrDefault(p => p.Correo == correo && p.Contrasenia == contrasenia);
@@ -33,16 +37,8 @@ namespace Veterinaria.App.Persistencia
                  p => p.Correo.Equals(correo) && p.Contrasenia.Equals(contrasenia)
             ).FirstOrDefault();
 
-
-            if (objetoEncontrado != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
+             return objetoEncontrado != null ?  true : false;
+        
 
         }
 

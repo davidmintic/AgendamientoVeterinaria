@@ -16,6 +16,7 @@ namespace Veterinaria.App.Persistencia
             if(!optionsBuilder.IsConfigured) {
                 optionsBuilder.UseSqlServer("Data Source =(localdb)\\MSSQLLocalDB; Initial Catalog = AgendamientoVeterinaria");
                
+//  optionsBuilder.UseSqlServer("Server=tcp:servermintic2021.database.windows.net,1433;Initial Catalog=AgendamientoVeterinaria;Persist Security Info=False;User ID=sesionmintic2021;Password=servermintic2021#;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             }
         }
 

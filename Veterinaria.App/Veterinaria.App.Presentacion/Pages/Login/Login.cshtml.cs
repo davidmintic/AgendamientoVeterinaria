@@ -41,7 +41,7 @@ namespace Veterinaria.App.Presentacion
             }
             else
             {
-                Console.WriteLine("no login " + user.Correo);
+                // Console.WriteLine("no login " + user.Correo);
                 TempData["errorLogin"] = "true"; 
                 return new RedirectToPageResult("/Login/Login"); 
                 return null;
